@@ -32,6 +32,11 @@ export default function BotDetailPage() {
     source: string;
   }
 
+  interface SearchResult {
+    query: string;
+    response: string;
+  }
+
   const [documents, setDocuments] = useState<DocumentData[]>([]);
   const [activeTab, setActiveTab] = useState<'documents' | 'configurations' | 'search'>('documents');
   const [config, setConfig] = useState({ model_name: '', model_provider: '', api_key: '', temperature: '' });
@@ -42,7 +47,7 @@ export default function BotDetailPage() {
   const [hasMore, setHasMore] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
 
   const fetchDocs = async () => {
@@ -335,7 +340,7 @@ export default function BotDetailPage() {
           ) : (
             <>
               <div className="space-y-4">
-                {['model_name', 'model_provider', 'api_key', 'temperature'].map((field) => (
+                {(['model_name', 'model_provider', 'api_key', 'temperature'] as const).map((field) => (
                   <div key={field}>
                     <label className="block text-sm font-medium capitalize">{field.replace('_', ' ')}</label>
                     <input
@@ -343,7 +348,7 @@ export default function BotDetailPage() {
                       step={field === 'temperature' ? '0.1' : undefined}
                       min={field === 'temperature' ? 0 : undefined}
                       max={field === 'temperature' ? 1 : undefined}
-                      value={(config as any)[field]}
+                      value={config[field]}
                       onChange={(e) => updateField(field, e.target.value)}
                       className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                     />
