@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Trash } from "lucide-react";
 
-
-
 interface Bot {
     botId: string;
     botName: string;
@@ -42,8 +40,12 @@ export default function DashboardPage() {
 
                 const data = await res.json();
                 setBots(data.data.bots); // expects each bot to have id and botName
-            } catch (err: any) {
-                setError(err.message);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError('An unknown error occurred');
+                }
             } finally {
                 setLoading(false);
             }
@@ -71,14 +73,18 @@ export default function DashboardPage() {
                 body: JSON.stringify({ botId, name: botName }),
             });
 
-
             if (!res.ok) throw new Error("Failed to delete bot");
 
             // remove from local state
             setBots((prev) => prev.filter((b) => b.botId !== botId));
-        } catch (err: any) {
-            console.error("Error deleting bot:", err);
-            alert("Could not delete bot");
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.error("Error deleting bot:", err);
+                alert("Could not delete bot: " + err.message);
+            } else {
+                console.error("Unknown error deleting bot:", err);
+                alert("Could not delete bot: An unknown error occurred");
+            }
         }
     };
 
@@ -107,8 +113,12 @@ export default function DashboardPage() {
             setBots((prev) => [...prev, createdBot]);
             setNewBotName('');
             setShowModal(false);
-        } catch (err: any) {
-            alert(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                alert(err.message);
+            } else {
+                alert('An unknown error occurred');
+            }
         } finally {
             setCreating(false);
         }
@@ -155,7 +165,6 @@ export default function DashboardPage() {
                                 <h2 className="text-xl font-semibold text-gray-800 mb-1">{bot.botName}</h2>
                             </div>
                         ))}
-
                     </div>
                 )}
             </div>
