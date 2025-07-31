@@ -1,109 +1,78 @@
-Frontend Application
-This is the frontend part of a web application built with Next.js and TypeScript. It allows users to sign up, log in, add content, and search for content. The application is designed to be user-friendly, performant, and scalable.
-Table of Contents
+# ✨ Next.js Chatbot Frontend
 
-Features
-Tech Stack
-Prerequisites
-Installation
-Running the Application
-Environment Variables
-Scripts
-Contributing
-License
+This is the **frontend** of a full-stack web application built with **Next.js** and **TypeScript**. It enables users to **sign up, log in**, **create and manage content**, and **search existing content** via a clean, responsive UI.
 
-Features
+> 🔐 Authenticated features, optimized performance, and a smooth developer experience.
 
-User Authentication:
-Sign up with email and password.
-Log in with credentials.
-Secure session management.
+---
 
+## 🛠️ Tech Stack
 
-Content Management:
-Add new content with a title and description.
-View a list of all content.
+- [Next.js](https://nextjs.org/) (App Router)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [React Hook Form](https://react-hook-form.com/) for form handling
+- [Zod](https://zod.dev/) for schema validation
+- [Axios](https://axios-http.com/) for API requests
+- Optional: [NextAuth.js](https://next-auth.js.org/) for auth or custom JWT/session-based auth
 
+---
 
-Search Functionality:
-Search content by keywords.
-Real-time search results with debouncing for performance.
+## 🚀 Features
 
+✅ User Authentication  
+✅ Sign up / Log in / Log out  
+✅ Add new content  
+✅ View your content  
+✅ Search content  
+✅ Protected routes  
+✅ Responsive UI
 
-Responsive Design:
-Mobile-first UI built with Tailwind CSS.
+---
 
+## 📦 Getting Started
 
-Type Safety:
-End-to-end type safety using TypeScript.
+### 1. Clone the repo
 
+```bash
+git clone https://github.com/your-username/nextjs-content-app-frontend.git
+cd nextjs-content-app-frontend
+```
+### 2. Install dependencies
 
+```bash
+npm install
+# or
+yarn install
+```
 
-Tech Stack
+### 3. Set up environment variables
+Create a .env.local file in the root and add:
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+# Add NEXTAUTH_URL or JWT secret if using NextAuth or similar
+```
 
-Framework: Next.js (v14 or later)
-Language: TypeScript
-Styling: Tailwind CSS
-State Management: React Context or Redux (optional, based on complexity)
-API Integration: Fetch API or Axios for backend communication
-Authentication: JWT or NextAuth.js (configurable)
-Form Handling: React Hook Form with Zod for validation
-Linting & Formatting: ESLint, Prettier
-Testing: Jest, React Testing Library (optional setup)
+### 4. Run the development server
 
-Prerequisites
-Ensure you have the following installed:
+```bash
+npm run dev
+```
 
-Node.js: v18 or later
-npm or yarn (npm recommended)
-A backend API server (not included in this repo) to handle authentication and content CRUD operations.
+## 🔐 Authentication Flow
 
-Installation
+Uses JWT
 
-Clone the repository:git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+Auth token stored in localStorage
 
+Protected pages redirect to login if not authenticated
 
-Install dependencies:npm install
+## 🤝 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-
-Set up environment variables (see Environment Variables).
-
-Running the Application
-
-Start the development server:npm run dev
-
-
-Open your browser and navigate to http://localhost:3000.
-
-Environment Variables
-Create a .env.local file in the root directory and add the following variables:
-NEXT_PUBLIC_API_URL=http://your-backend-api-url
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your-secret-key
+## 📄 License
+MIT
 
 
-NEXT_PUBLIC_API_URL: URL of the backend API.
-NEXTAUTH_URL: Base URL for NextAuth.js (if used).
-NEXTAUTH_SECRET: Secret for signing JWT tokens (generate a secure key).
-
-Scripts
-
-npm run dev: Start the development server.
-npm run build: Build the application for production.
-npm run start: Start the production server.
-npm run lint: Run ESLint to check code quality.
-npm run format: Format code with Prettier.
-npm test: Run tests (if configured).
-
-Contributing
-Contributions are welcome! Please follow these steps:
-
-Fork the repository.
-Create a new branch (git checkout -b feature/your-feature).
-Commit your changes (git commit -m "Add your feature").
-Push to the branch (git push origin feature/your-feature).
-Open a Pull Request.
-
-License
-This project is licensed under the MIT License.
+## 📬 Contact
+For issues, suggestions, or questions, feel free to contact akshatsharmasde@gmail.com
