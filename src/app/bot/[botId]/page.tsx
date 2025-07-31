@@ -258,16 +258,17 @@ export default function BotDetailPage() {
 
   return (
     <div className="min-h-screen p-8 bg-gray-100">
-               <title>Bot Details</title>
+      <title>Bot Details</title>
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
         Bot Details: <span className="text-indigo-600">{botName}</span>
       </h1>
       <div className="flex space-x-4 mb-6">
-        {['documents', 'configurations', 'search'].map((tab) => (
+        {(['documents', 'configurations', 'search'] as const).map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab as any)}
-            className={`px-4 py-2 rounded-lg font-medium ${activeTab === tab ? 'bg-indigo-600 text-white' : 'bg-white text-gray-800 border cursor-pointer'}`}
+            onClick={() => setActiveTab(tab)}
+            className={`px-4 py-2 rounded-lg font-medium ${activeTab === tab ? 'bg-indigo-600 text-white' : 'bg-white text-gray-800 border cursor-pointer'
+              }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
